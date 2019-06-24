@@ -12,6 +12,8 @@ public class SceneLoader : MonoBehaviour
 
     private void Start()
     {
+        Application.backgroundLoadingPriority = ThreadPriority.Low;
+        //
         StartCoroutine(LoadAsyncScene());
     }
 
