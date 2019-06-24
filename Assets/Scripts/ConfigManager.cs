@@ -1,29 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class ConfigManager : MonoBehaviour
 {
     [Header("PostProcessing")]
     public GameObject postProcesingVolume;
+    public PostProcessLayer ppLayer;
 
     [Header("Player")]
     public CharacterMove playerMovement;
 
     [Header("UI")]
     public GameObject fpsCounter;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void ChangeViewSens(float sens)
     {
@@ -40,11 +30,11 @@ public class ConfigManager : MonoBehaviour
     {
         if(enable)
         {
-            QualitySettings.antiAliasing = 2;
+            ppLayer.antialiasingMode = PostProcessLayer.Antialiasing.FastApproximateAntialiasing;
         }
         else
         {
-            QualitySettings.antiAliasing = 0;
+            ppLayer.antialiasingMode = PostProcessLayer.Antialiasing.None;
         }
     }
 

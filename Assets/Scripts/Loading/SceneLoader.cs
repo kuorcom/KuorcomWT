@@ -18,24 +18,12 @@ public class SceneLoader : MonoBehaviour
     public IEnumerator LoadAsyncScene()
     {
         asyncLoad = SceneManager.LoadSceneAsync("Main");
-        asyncLoad.allowSceneActivation = false;
 
         loadingText.text = "LOADING...";
 
         while (!asyncLoad.isDone)
         {
             loadSlider.value = asyncLoad.progress;
-
-            if (asyncLoad.progress >= 0.9f)
-            {
-                loadSlider.value = 1;
-                loadingText.text = "Tap to Start";
-                if (Input.GetMouseButtonDown(0))
-                {
-                    asyncLoad.allowSceneActivation = true;
-                }
-            }
-
             yield return null;
         }
 
