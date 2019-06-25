@@ -54,6 +54,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     interactableGroupComponent.Interact();
                     interactableGroupComponent.outlineEffect.enabled = true;
+                    interactableGroupComponent.ToggleOthersOutline(true);
                 }
             }
         }
