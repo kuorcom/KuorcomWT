@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterMove : MonoBehaviour
 {
     public bool detectPlatform = false;
+    public static bool isMoving = false;
 
     [Header("Head Movement")]
     public Transform headTransform;
@@ -60,7 +61,7 @@ public class CharacterMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.isInIsoMode || GameManager.isInMenu)
+        if (GameManager.isInIsoMode || GameManager.isInMenu || GameManager.isInInteractionMenu)
             return;
 
         float playerRotation = 0;
@@ -87,10 +88,12 @@ public class CharacterMove : MonoBehaviour
                 playerRotation = Input.GetAxis("Mouse X") * Time.deltaTime * yAxisSpeed;
                 //
                 Cursor.visible = false;
+                isMoving = true;
             }
             else
             {
                 Cursor.visible = true;
+                isMoving = false;
             }
         }
 
