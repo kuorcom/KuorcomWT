@@ -61,7 +61,7 @@ public class CharacterMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.isInIsoMode || GameManager.isInMenu || GameManager.isInInteractionMenu)
+        if (GameManager.isInIsoMode || GameManager.isInMenu || GameManager.isInInteractionMenu || GameManager.isInTutorial)
             return;
 
         float playerRotation = 0;
@@ -88,11 +88,13 @@ public class CharacterMove : MonoBehaviour
                 playerRotation = Input.GetAxis("Mouse X") * Time.deltaTime * yAxisSpeed;
                 //
                 Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
                 isMoving = true;
             }
             else
             {
                 Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 isMoving = false;
             }
         }

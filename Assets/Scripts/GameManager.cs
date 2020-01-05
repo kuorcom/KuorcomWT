@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool isInIsoMode = false, isInMenu = false, isInInteractionMenu = false;
+    public static bool isInIsoMode = false, isInMenu = false, isInInteractionMenu = false, isInTutorial = true;
 
     public void IsoMode(bool active)
     {

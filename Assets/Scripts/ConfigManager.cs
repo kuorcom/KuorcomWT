@@ -28,13 +28,28 @@ public class ConfigManager : MonoBehaviour
 
     public void EnableAA(bool enable)
     {
-        if(enable)
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            ppLayer.antialiasingMode = PostProcessLayer.Antialiasing.FastApproximateAntialiasing;
+            if (enable)
+            {
+                ppLayer.antialiasingMode = PostProcessLayer.Antialiasing.FastApproximateAntialiasing;
+                ppLayer.fastApproximateAntialiasing.fastMode = true;
+            }
+            else
+            {
+                ppLayer.antialiasingMode = PostProcessLayer.Antialiasing.None;
+            }
         }
         else
         {
-            ppLayer.antialiasingMode = PostProcessLayer.Antialiasing.None;
+            if (enable)
+            {
+                QualitySettings.antiAliasing = 4;
+            }
+            else
+            {
+                QualitySettings.antiAliasing = 0;
+            }
         }
     }
 
@@ -60,3 +75,5 @@ public class ConfigManager : MonoBehaviour
         fpsCounter.SetActive(show);
     }
 }
+
+

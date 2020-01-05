@@ -75,7 +75,14 @@ public class UIManager : MonoBehaviour
 
     public void ExitGame()
     {
-        Application.Quit();
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            Application.OpenURL("http://kuorcom.co");
+        }
+        else
+        {
+            Application.Quit();
+        }
     }
 
     #region Interaction Panel
@@ -146,4 +153,17 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
+
+    public void ChangeLanguage()
+    {
+        switch(Lean.Localization.LeanLocalization.CurrentLanguage)
+        {
+            case "English":
+                Lean.Localization.LeanLocalization.CurrentLanguage = "Spanish";
+                break;
+            case "Spanish":
+                Lean.Localization.LeanLocalization.CurrentLanguage = "English";
+                break;
+        }
+    }
 }

@@ -15,6 +15,9 @@ public class Interactable : MonoBehaviour
     public List<Color> availableColors = new List<Color>();
 
     [Header("Change Material")]
+    public bool isMultiMaterial = false;
+    public int multiMaterialIndex = 0;
+    Material[] mats;
     public List<Material> availableMaterials = new List<Material>();
 
     [Header("On/Off")]
@@ -27,6 +30,14 @@ public class Interactable : MonoBehaviour
         objectMeshRenderer = GetComponent<MeshRenderer>();
         objectMaterial = objectMeshRenderer.material;
         outlineEffect = GetComponent<Outline>();
+    }
+
+    private void Start()
+    {
+        if (isMultiMaterial)
+        {
+            mats = objectMeshRenderer.materials;
+        }
     }
 
     public void Interact()
@@ -78,7 +89,15 @@ public class Interactable : MonoBehaviour
 
     public void ChangeMaterial(int materialIndex)
     {
-        objectMeshRenderer.material = availableMaterials[materialIndex];
+        if (isMultiMaterial)
+        {
+            mats[multiMaterialIndex] = availableMaterials[materialIndex];
+            objectMeshRenderer.materials = mats;
+        }
+        else
+        {
+            objectMeshRenderer.material = availableMaterials[materialIndex];
+        }
     }
 
     #endregion

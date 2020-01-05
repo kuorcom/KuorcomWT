@@ -22,7 +22,7 @@ public class PlayerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.isInInteractionMenu || GameManager.isInIsoMode || GameManager.isInMenu || CharacterMove.isMoving)
+        if (GameManager.isInInteractionMenu || GameManager.isInIsoMode || GameManager.isInMenu || CharacterMove.isMoving || GameManager.isInTutorial)
         {
             Cursor.SetCursor(idleCursor, Vector2.zero, CursorMode.Auto);
             return;
